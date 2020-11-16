@@ -66,7 +66,7 @@ contract DwitterMain {
    
     function addNewUser(string memory _firstName, string memory _lastName, string memory _userName, string memory _bio) public accountAlreadyExists userNameAlreadyExists(_userName){
 
-        users[user_count++]= User(user_count++, msg.sender, _firstName, _lastName, _userName, _bio);
+        users.push(User(user_count++, msg.sender, _firstName, _lastName, _userName, _bio));
         accountCheck[msg.sender] = true;
         userNameCheck[_userName] = true;
         
@@ -77,12 +77,12 @@ contract DwitterMain {
     }
    
     function addNewDweet(string memory _content, string memory _hashtag) public{
-        uint dweetId = dweet_count++;
+         dweet_count++;
         //string[] memory hashtagList = identifyHashtags(_content);  
        
-        dweets[dweetId]= Dweet(dweetId, _content, block.timestamp, 0, 0, _hashtag);
+        dweets.push(Dweet(dweet_count, _content, block.timestamp, 0, 0, _hashtag));
        
-        dweetToAuthor[dweetId] = msg.sender;
+        dweetToAuthor[dweet_count] = msg.sender;
         dweetCountAuthor[msg.sender]++;
         
         //fire event new dweet added
