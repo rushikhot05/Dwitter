@@ -64,7 +64,7 @@ contract DwitterMain {
         
     }
    
-    function addNewUser(string memory _firstName, string memory _lastName, string memory _userName, string memory _bio) public accountAlreadyExists userNameAlreadyExists(_userName){
+    function registerNewUser(string memory _firstName, string memory _lastName, string memory _userName, string memory _bio) public accountAlreadyExists userNameAlreadyExists(_userName){
 
         users.push(User(user_count++, msg.sender, _firstName, _lastName, _userName, _bio));
         accountCheck[msg.sender] = true;
