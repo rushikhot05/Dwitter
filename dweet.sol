@@ -1,9 +1,9 @@
+
 pragma solidity >=0.5.0;
 
 contract DwitterMain {
-   address owner;
-  
    
+  
     struct Dweet {
         uint id;
         string content;
@@ -11,6 +11,7 @@ contract DwitterMain {
         uint upvotes;
         uint reports;
         string hashtag;
+        bool deleted;
        
     }
    
@@ -21,18 +22,19 @@ contract DwitterMain {
         string lastname;
         string userName;
         string bio;
+        uint following;
+        uint followers;
        // string photoUrl;  //profile picture
     }
    
     uint public dweet_count=0;
     uint public user_count=0;
    
-    uint date = block.timestamp;
-   
     Dweet[] public dweets;
     User[] public users;
    
-   
+    mapping(address => uint) public addressToId; 
+    mapping(string => uint) public userNameToId;
     mapping(uint => address) public dweetToAuthor;  //maps dweet's id to author's address
     mapping(address => uint) public dweetCountAuthor; //stores number of dweets by individual author
     mapping(address => bool) accountCheck;  //only one account per public key
@@ -42,14 +44,6 @@ contract DwitterMain {
    event  NewUserAdd( string userName, address pkey);
    event NewDweetAdd(string content, string hashtag, uint timestamp);
    
-   
-   /*
-   
-     modifier onlyOwner(){
-         require(msg.sender == owner);
-         _;
-     }
-*/
 
      modifier accountAlreadyExists(){
         require(accountCheck[msg.sender] == false);
@@ -63,28 +57,43 @@ contract DwitterMain {
         //create alert in front end
         
     }
+    
+    modifier userExists(){
+        require(accountCheck[msg.sender] == true);
+        _;
+    }
+    
+    modifier userNameExists(string memory _userName){
+        require(userNameCheck[_userName] == true);
+        _;
+        
+    }
    
     function registerNewUser(string memory _firstName, string memory _lastName, string memory _userName, string memory _bio) public accountAlreadyExists userNameAlreadyExists(_userName){
 
-        users.push(User(user_count++, msg.sender, _firstName, _lastName, _userName, _bio));
+        users.push(User(user_count, msg.sender, _firstName, _lastName, _userName, _bio,0,0));
         accountCheck[msg.sender] = true;
         userNameCheck[_userName] = true;
+        userNameToId[_userName]= user_count;
+        addressToId[msg.sender]= user_count;
         
+        user_count++;
         // fire event new user added
             emit NewUserAdd(_userName, msg.sender);
        
        
     }
    
-    function addNewDweet(string memory _content, string memory _hashtag) public{
-         dweet_count++;
+    function addNewDweet(string memory _content, string memory _hashtag) userExists public{
+         
         //string[] memory hashtagList = identifyHashtags(_content);  
        
-        dweets.push(Dweet(dweet_count, _content, block.timestamp, 0, 0, _hashtag));
+        dweets.push(Dweet(dweet_count, _content, block.timestamp, 0, 0, _hashtag, false));
        
         dweetToAuthor[dweet_count] = msg.sender;
         dweetCountAuthor[msg.sender]++;
         
+        dweet_count++;
         //fire event new dweet added
         emit NewDweetAdd(_content, _hashtag, block.timestamp);
        
