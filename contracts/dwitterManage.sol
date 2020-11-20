@@ -8,7 +8,7 @@ contract DwitterManage is DwitterMain {
    event upvoted(uint id, address upvoter);
    event reported(uint id, address reporter);
    event deleted(uint id, uint timestamp);
-   event followed(uint id, uint follower); //id is of the person who is being followed
+   event followed(uint id, uint followers); //id is of the person who is being followed
    
    modifier onlyAuthor(uint id) {
        require(msg.sender == dweetToAuthor[id]);
@@ -29,7 +29,7 @@ contract DwitterManage is DwitterMain {
        dw.upvotes++;
        
        //emit event
-       upvoted(id, upvoter);
+       emit upvoted(id, upvoter);
        
        
    }   
@@ -41,7 +41,7 @@ contract DwitterManage is DwitterMain {
        dw1.reports++;
        
        //emit event
-       reported(id, reporter);
+       emit reported(id, reporter);
        
        if(dw1.reports > 10){
            //mark or remove content
@@ -56,7 +56,7 @@ contract DwitterManage is DwitterMain {
        dw1.deleted = true;
 
        //emit event
-       deleted(id, block.timestamp);
+       emit deleted(id, block.timestamp);
    }
    
    
@@ -78,6 +78,7 @@ contract DwitterManage is DwitterMain {
        uint id1 = addressToId[follower];
        User storage user2 = users[id1];
        user2.following++;
+       emit followed(id,user1.followers);
    }
    
    
