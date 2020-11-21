@@ -1,4 +1,4 @@
-
+//SPDX-License-Identifier: UNLICENSED
 pragma solidity >=0.5.0;
 
 contract DwitterMain {
@@ -7,6 +7,7 @@ contract DwitterMain {
     struct Dweet {
         uint id;
         string content;
+        address author;
         uint timestamp;
         uint upvotes;
         uint reports;
@@ -26,6 +27,12 @@ contract DwitterMain {
         uint followers;
        // string photoUrl;  //profile picture
     }
+   
+  /* 
+   struct DweetsByAuthor{
+       mapping(address => uint) public AuthorToDweet;
+
+   } */
    
     uint public dweet_count=0;
     uint public user_count=0;
@@ -88,7 +95,7 @@ contract DwitterMain {
          
         //string[] memory hashtagList = identifyHashtags(_content);  
        
-        dweets.push(Dweet(dweet_count, _content, block.timestamp, 0, 0, _hashtag, false));
+        dweets.push(Dweet(dweet_count, _content, msg.sender, block.timestamp, 0, 0, _hashtag, false));
        
         dweetToAuthor[dweet_count] = msg.sender;
         dweetCountAuthor[msg.sender]++;
