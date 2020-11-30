@@ -1,6 +1,6 @@
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity >=0.5.0;
-import "./dweet.sol";
+import "./dwitterMain.sol";
 
 contract DwitterManage is DwitterMain {
     //upvote, report, delete functionalities
@@ -17,71 +17,42 @@ contract DwitterManage is DwitterMain {
    }
    
    modifier dweetNotDeleted(uint id) {
-       Dweet memory dw = dweets[id];
-       require(dw.deleted == false);
+       require(dweets[id].deleted == false);
        _;
    }
   
-   
    function upvoteDweet(uint id) userExists public {
-   
-       address upvoter = msg.sender;
-       Dweet storage dw = dweets[id];
-       dw.upvotes++;
-       
-       //emit event
-       emit upvoted(id, upvoter);
-       
-       
+       dweets[id].upvotes++;
+       emit upvoted(id, msg.sender);    
    }   
    
     function reportDweet(uint id) userExists public {
-   
-       address reporter = msg.sender;  //should we store this ?
-       Dweet storage dw1 = dweets[id];
-       dw1.reports++;
-       
-       //emit event
-       emit reported(id, reporter);
-       
-       if(dw1.reports > 10){
-           //mark or remove content
-           dw1.deleted = true;
+       dweets[id].reports++;
+       emit reported(id, msg.sender);
+       if(dweets[id].reports > 10){
+           dweets[id].deleted = true;
        }
-       
    }   
    
    function deleteDweet(uint id) onlyAuthor(id) public {
-       
-       Dweet storage dw1 = dweets[id];
-       dw1.deleted = true;
-
-       //emit event
+       dweets[id].deleted = true;
        emit deleted(id, block.timestamp);
    }
    
    
    function search(string memory _userName) userNameExists(_userName) view public returns(string memory _firstname, string memory _lastName, address pkey, string memory _bio, uint followers, uint following){
        uint id1= userNameToId[_userName];
-       User memory user1= users[id1];
-       return(user1.firstname, user1.lastname, user1.pkey, user1.bio, user1.followers, user1.following);
-       //display the profile page of corresponding id
+       return(users[id1].firstname, users[id1].lastname, users[id1].pkey, users[id1].bio, users[id1].followers, users[id1].following);
    }
    
    function followUser(uint id) userExists  public {
-      // uint id2 = userNameToId[userName];
-       User storage user1 = users[id];
-       address toBeFollowed1= user1.pkey;
-       require(msg.sender != toBeFollowed1);
-       //a user cannot follow himself
-       user1.followers++;
-      
-       
-       address follower = msg.sender;
-       uint id1 = addressToId[follower];
-       User storage user2 = users[id1];
-       user2.following++;
-       emit followed(user1.followers, user2.following);
+       address toBeFollowed1= users[id].pkey;
+       require(msg.sender != toBeFollowed1); //a user cannot follow himself
+       users[id].followers++;
+
+       uint id1 = addressToId[msg.sender];
+       users[id1].following++;
+       emit followed(users[id].followers, users[id1].following);
    }
    
   
@@ -89,13 +60,8 @@ contract DwitterManage is DwitterMain {
    {
         Dweet memory dw = dweets[id];
        if(_author == dw.author)
-       {
-           return (dw.content, dw.author, dw.timestamp, dw.upvotes, dw.reports, dw.hashtag);
-       }
-       
+         return (dw.content, dw.author, dw.timestamp, dw.upvotes, dw.reports, dw.hashtag);
    } 
-   
-  
    
    function getDweetByHashtag(uint id, string memory _searchHashtag) dweetNotDeleted(id) view public returns(string memory content, address author, uint timestamp,uint upvotes, uint reports, string memory hashtag)
    {
@@ -108,11 +74,6 @@ contract DwitterManage is DwitterMain {
    
    function getDweet(uint id) dweetNotDeleted(id) view public returns(string memory content, address author, uint timestamp,uint upvotes, uint reports, string memory hashtag) {
        Dweet memory dw = dweets[id];
-       
        return (dw.content, dw.author, dw.timestamp, dw.upvotes, dw.reports, dw.hashtag);
    }
-   
-   //stuff to be ensured in front 
-   //one upvote,report,follow only per account per dweets
-   //display dweets 
 }
