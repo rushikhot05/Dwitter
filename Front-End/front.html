@@ -30,8 +30,7 @@
     <div class="side">
         <h2 style="border-bottom: 4px solid #e6ecf0;">Dwitter</h2>
         <h4><i class="material-icons">home</i>Home</h4>
-        <h4><i class="material-icons">explore</i>Explore</h4>
-        <h4><i class="material-icons">notifications</i>Notification</h4>
+       
         <h4 onclick="window.location.reload(); "><i class="material-icons">account_box</i>Profile</h4>
         <h4>#Hashtags</h4>
         
@@ -55,9 +54,9 @@
                     <input id = "dweet" placeholder="What's happening??" type="text" style="min-width: 650px; padding: 10px 10px 10px 10px; border: none; font-size: 20px;">
                 </div>
                 <div class="dweettag">
-                    <input id="hashtag" placeholder="Enter your hashtags" type="text" class="hashtags" style="min-width: 300px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-size: 15px; border: none" />
+                    <input id="hashtag" placeholder="Enter your #hashtag" type="text" class="hashtags" style="min-width: 300px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-size: 15px; border: none" />
                 </div>
-              <input type="submit" class="twtbtn" style="margin-left:450px"> 
+              <input type="submit" class="twtbtn" style="margin-left:450px" value="Post Dweet >">  
                      </form>
         </div>
       
@@ -83,10 +82,10 @@
                 </div>
 
                 <div class="dweetfooter">
-                    <button class= "upvoteButton" style="visibility: hidden;"> UPVOTE 
+                    <button class= "upvoteButton" style="visibility: hidden;">
                         <span> <i class="material-icons">favorite_border</i></span> <span class= "upvotes"></span> </button>  
-                    <button class= "downvoteButton" style="display:none"> DOWNVOTE 
-                        <span> <i class="material-icons">favorite_border</i></span><span class= "upvotesChange"></span>  </button> &nbsp;&nbsp; &nbsp;&nbsp;
+                    <button class= "downvoteButton" style="visibility: hidden;"> 
+                        <span> <i class="material-icons">favorite</i></span><span class= "upvotesChange"></span>  </button> 
                     <button class= "reportButton" style="visibility: hidden;"> REPORT
                         <span> <i class="material-icons">report</i> </span><span class= "reports"></span></button>
                     
