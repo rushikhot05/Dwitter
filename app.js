@@ -50,7 +50,38 @@ loadAccount: async () => {
 
   loadContract: async () => {
     console.log("loadcont");
-      let abi =[
+      let abi = [
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "_content",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "_hashtag",
+              "type": "string"
+            }
+          ],
+          "name": "addNewDweet",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "deleteDweet",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
         {
           "anonymous": false,
           "inputs": [
@@ -134,6 +165,19 @@ loadAccount: async () => {
           "type": "event"
         },
         {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "downvoteDweet",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
           "anonymous": false,
           "inputs": [
             {
@@ -151,6 +195,60 @@ loadAccount: async () => {
           ],
           "name": "followed",
           "type": "event"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "followUser",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "_firstName",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "_lastName",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "_userName",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "_bio",
+              "type": "string"
+            }
+          ],
+          "name": "registerNewUser",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "reportDweet",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
         },
         {
           "anonymous": false,
@@ -193,6 +291,19 @@ loadAccount: async () => {
         {
           "inputs": [
             {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "upvoteDweet",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "internalType": "address",
               "name": "",
               "type": "address"
@@ -207,24 +318,6 @@ loadAccount: async () => {
             }
           ],
           "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "string",
-              "name": "_content",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "_hashtag",
-              "type": "string"
-            }
-          ],
-          "name": "addNewDweet",
-          "outputs": [],
-          "stateMutability": "nonpayable",
           "type": "function"
         },
         {
@@ -247,29 +340,16 @@ loadAccount: async () => {
           "type": "function"
         },
         {
-          "inputs": [
+          "inputs": [],
+          "name": "dweet_count",
+          "outputs": [
             {
               "internalType": "uint256",
-              "name": "id",
+              "name": "",
               "type": "uint256"
             }
           ],
-          "name": "deleteDweet",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "id",
-              "type": "uint256"
-            }
-          ],
-          "name": "downvoteDweet",
-          "outputs": [],
-          "stateMutability": "nonpayable",
+          "stateMutability": "view",
           "type": "function"
         },
         {
@@ -281,38 +361,6 @@ loadAccount: async () => {
             }
           ],
           "name": "dweetCountAuthor",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "name": "dweetToAuthor",
-          "outputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "dweet_count",
           "outputs": [
             {
               "internalType": "uint256",
@@ -381,13 +429,57 @@ loadAccount: async () => {
           "inputs": [
             {
               "internalType": "uint256",
-              "name": "id",
+              "name": "",
               "type": "uint256"
             }
           ],
-          "name": "followUser",
-          "outputs": [],
-          "stateMutability": "nonpayable",
+          "name": "dweetToAuthor",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            }
+          ],
+          "name": "getReportsList",
+          "outputs": [
+            {
+              "internalType": "uint256[]",
+              "name": "ids",
+              "type": "uint256[]"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            }
+          ],
+          "name": "getUpvotesList",
+          "outputs": [
+            {
+              "internalType": "uint256[]",
+              "name": "ids",
+              "type": "uint256[]"
+            }
+          ],
+          "stateMutability": "view",
           "type": "function"
         },
         {
@@ -412,42 +504,25 @@ loadAccount: async () => {
         {
           "inputs": [
             {
-              "internalType": "string",
-              "name": "_firstName",
-              "type": "string"
+              "internalType": "address",
+              "name": "",
+              "type": "address"
             },
-            {
-              "internalType": "string",
-              "name": "_lastName",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "_userName",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "_bio",
-              "type": "string"
-            }
-          ],
-          "name": "registerNewUser",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
             {
               "internalType": "uint256",
-              "name": "id",
+              "name": "",
               "type": "uint256"
             }
           ],
-          "name": "reportDweet",
-          "outputs": [],
-          "stateMutability": "nonpayable",
+          "name": "reportsList",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
           "type": "function"
         },
         {
@@ -497,14 +572,38 @@ loadAccount: async () => {
         {
           "inputs": [
             {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
               "internalType": "uint256",
-              "name": "id",
+              "name": "",
               "type": "uint256"
             }
           ],
-          "name": "upvoteDweet",
-          "outputs": [],
-          "stateMutability": "nonpayable",
+          "name": "upvotesList",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "user_count",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
           "type": "function"
         },
         {
@@ -535,19 +634,6 @@ loadAccount: async () => {
             }
           ],
           "name": "userNameToId",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "user_count",
           "outputs": [
             {
               "internalType": "uint256",
@@ -613,7 +699,7 @@ loadAccount: async () => {
           "type": "function"
         }
       ];
-      let address = '0x94befa2e41b2613b313a97e7bacdd50e6c1f3769';
+      let address = '0x4abFb8Ce551D4fC292CF2ebF78Fd98ef0a46520e';
       App.dwitterManage = new web3.eth.Contract(abi, address);
      console.log(App.dwitterManage);
   },
@@ -683,36 +769,56 @@ loadAccount: async () => {
          $newpostTemplate.find(".hashtags").html(hashtag);
          $newpostTemplate.find(".time").html(datestring);
          $newpostTemplate.find(".upvotes").html(upvotes);
+         $newpostTemplate.find(".upvotesChange").html(upvotes);
          $newpostTemplate.find(".reports").html(reports);
          $("#post").append($newpostTemplate); 
     
-
+         $newpostTemplate
+         .find(".upvoteButton")
+         .prop("id", id+"a")
+         .on("click",function(){ App.upvoteDweet(id); }); 
+        
+         $newpostTemplate
+         .find(".downvoteButton")
+         .prop("id", id+"b")
+         .on("click", function(){ App.downvoteDweet(id); });
+ 
+         $newpostTemplate
+         .find(".reportButton")
+         .prop("id", id+"c")
+         .prop("style", "visibility:visible")
+         .on("click", function(){ App.reportDweet(id); }); 
+       
+       
+       
+       const temp = await App.dwitterManage.methods.getUpvotesList(App.account).call()
+      // console.log("t" + temp)
+       if(temp.includes(id)){
+        $newpostTemplate
+        .find(".downvoteButton")
+        .prop("style", "visibility:visible")
+        
 
         $newpostTemplate
         .find(".upvoteButton")
-        .prop("id", id+"a")
+        .prop("style", "display:none")
+       }
+       else{
+        $newpostTemplate
+        .find(".upvoteButton")
         .prop("style", "visibility:visible")
-        .on("click",function(){ App.upvoteDweet(id); }); 
        
         $newpostTemplate
         .find(".downvoteButton")
-        .prop("id", id+"b")
-        .on("click", function(){ App.downvoteDweet(id); });
+        .prop("style", "display:none")
+       }
 
-        $newpostTemplate
-        .find(".reportButton")
-        .prop("id", id+"c")
-        .prop("style", "visibility:visible")
-        .on("click", function(){ App.reportDweet(id); }); 
-
-        $newpostTemplate
-        .find(".upvotes")
-        .prop("id", id+"d");
-        
-        $newpostTemplate
-        .find(".upvotesChange")
-        .prop("id", id+"e");
-
+       const temp1 = await App.dwitterManage.methods.getReportsList(App.account).call()
+       if(temp1.includes(id)){
+        $(`#${id}c`).prop("disabled", true);
+        $(`#${id}c`).prop("style", "background: #4e5050")
+         } 
+       
         $newpostTemplate
         .find(".reports")
         .prop("id", id+"f"); 
@@ -729,13 +835,14 @@ loadAccount: async () => {
 
 addNewDweet: async () => {
   const content = $("#dweet").val();
-  const hashtag= $("#hashtag").val();
-
+  let hashtag= $("#hashtag").val();
+if(content != ""){
+    if(!hashtag.startsWith("#")) {hashtag = "#" + hashtag}
   var rc = await App.dwitterManage.methods
     .addNewDweet(content,hashtag)
     .send({ from: web3.currentProvider.selectedAddress });
   console.log(rc);
-  window.location.reload();
+  window.location.reload(); }
   //
 },
 
@@ -753,13 +860,14 @@ upvoteDweet: async (id) => {
    $(`#${id}b`).show()
    $(`#${id}e`).text(curr)
    $(`#${id}e`).show()
-   
+   window.location.reload();
 },
 
 downvoteDweet: async (id) => { 
   await App.dwitterManage.methods
   .downvoteDweet(id)
   .send({ from: web3.currentProvider.selectedAddress }); 
+  const temp = await App.dwitterManage.methods.getUpvotesList(App.account).call()
   var old = $(`#${id}e`).text()
   console.log(old)
   var curr = parseInt(old)-1;
@@ -770,7 +878,7 @@ downvoteDweet: async (id) => {
   $(`#${id}a`).show()
   $(`#${id}d`).text(curr)
    $(`#${id}d`).show()
- 
+   window.location.reload();
 },
 
 reportDweet: async (id) => { //pass in the dweet's id
@@ -780,6 +888,7 @@ reportDweet: async (id) => { //pass in the dweet's id
   var old = $(`#${id}f`).text()
   var curr = parseInt(old)+1;
   $(`#${id}f`).text(curr)
+  $(`#${id}c`).prop("style", "background: #4e5050")
   $(`#${id}c`).prop("disabled", true);
 },
 
