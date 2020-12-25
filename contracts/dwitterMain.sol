@@ -28,14 +28,17 @@ contract DwitterMain {
     Dweet[] public dweets;
     User[] public users;
    
-    mapping(address => uint) public addressToId; 
+    mapping(address => uint) public addressToId;
     mapping(string => uint) public userNameToId;
     mapping(uint => address) public dweetToAuthor;  //maps dweet's id to author's address
     mapping(address => uint) public dweetCountAuthor; //stores number of dweets by individual author
     mapping(address => bool) public accountCheck;  //only one account per public key
-    mapping(string => bool) public userNameCheck;   //check if username already taken 
+    mapping(string => bool) public userNameCheck;   //check if username already taken
     mapping(uint => string) public idToUsername;
+    mapping(address => uint[]) public upvotesList;
+    mapping(address => uint[]) public reportsList;
    
+
     event  NewUserAdd( string userName, address pkey);
     event NewDweetAdd(string content, string hashtag, uint timestamp);
    
@@ -44,31 +47,31 @@ contract DwitterMain {
         require(accountCheck[msg.sender] == false);
         _;
     }
-    
+   
     modifier userNameAlreadyExists(string memory _userName){
         require(userNameCheck[_userName] == false);
         _;
     }
-    
+   
     modifier userExists(){
         require(accountCheck[msg.sender] == true);
         _;
     }
-    
+   
     modifier userNameExists(string memory _userName){
         require(userNameCheck[_userName] == true);
         _;  
     }
    
     function registerNewUser(string memory _firstName, string memory _lastName, string memory _userName, string memory _bio) public accountAlreadyExists userNameAlreadyExists(_userName){
-
+       
         users.push(User(user_count, msg.sender, _firstName, _lastName, _userName, _bio,0,0));
         accountCheck[msg.sender] = true;
         userNameCheck[_userName] = true;
         userNameToId[_userName]= user_count;
         addressToId[msg.sender]= user_count;
         idToUsername[user_count] = _userName;
-        user_count++;
+         user_count++;
         emit NewUserAdd(_userName, msg.sender);  
     }
    
@@ -80,3 +83,4 @@ contract DwitterMain {
         emit NewDweetAdd(_content, _hashtag, block.timestamp);
     }
 }
+
