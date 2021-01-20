@@ -24,14 +24,13 @@
 
 
 <body>
-    <div class="sidelogo">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAFGElEQVRoge2Ya2xTZRjH/8/b7gJMYTJAUIhZ5m4CAyGACDJgorhAWKCyDIUlBgLq9ANRMWqyaOIHE0wMyvBGEEgEq5CFEKOOsLBMGDeN3GEbZZPLADcuMjfa8/z9sA7L0rJedvFD/0nT9vSc5/39nnNO35wXiCaaaKKJJoJIbwyan5kzlpZZTEGO0gwnJJY05xWyVyjfbT+zYycA+js2J9kxoqzWWdf+PaDAq2PHDvu7qalxg8vV0lXgjuSc/rZYlBCST4goDQhpe9H7DgNS9gnxUml16fH2Y2enLJyk0FVQU/NT7daVnQq8lpW1nmT/S2lpzzudTitS+Py0p4dBuIuQdEJwD3ho2/ZrKuY9sWQkRWYrZAQhjbc9+li5y3npngJFKSlx6Nv3KoAEiGwYmJi4tLi83BMufOEj2fEt8fYKQsYHCe/97a79PCpYUFa9tdS3tvE3oElIGA0gAQCUUnj56vVty8aN6xuuwD9x9qKI4FVuqZhFHo9WzUguWDE9+cW34W2+XwFa1jAAUG9hiswRNypXjB6fFip8dna2HSJvRtB5qJF6UlYbE3uRMK/b0LIW3pvcr4CK3LwD7y0ElTGWmkNLR05YXhzgOH8ZfDFuKiFJYcO3bUsn5WFC/jQwc8tqndfb6/sFsUiXL3zbZwNC+ilNSd3IJw4UZj45NTgFjooI/r9GHra7PRN31W487Vvdr8CQI0dchLg6wEN5p/jjgOxZkjm1YnHGtDwHHLZA+AozKGJ4Sm3MLXnql/otFzrW9ytQDCjFfOUX/u7BplCwLS7jysWCzJmfF2RMf65gVG7iXf2HuRph56Ei135u2HTLH2vAeaAoZeL9rfH8jZDkAPA+Ysa3wyTktNKcoqCetA0hsSBceO8YlXvObpzijzPgzbimuuqGGlmklOYQ4OGdYdMImUuaVyKFJwUQ241AnHZ/G5eNmlBAmnlqYZPCLAHwKWmGBAEf/l9lAHiFAYE6f5wBBZRyhYSDEAeAYDvfTfAC0lQHEvA/D7jt+whxh3DZdCO8AMpDIQmsP1V5k8T2/wM8Ie4Wt70qJAEAUJj3CWntZXgQUnHowhfNIQt8c7zymIqs7GV4KOWHQIz3FACATcf2fEY1Kwnj6Q14wrTa7LbvwxYAgM0nd3+sxDRSKnsYHlT59teadZcjEngh45mhRmwDlPIWIcVK09gj8BS1KKs74/M7D/imtdVqNrGyFSIJPdZ5Ciwxmw/WlxztjK/TM+CsLbtOyIc9Ca+QG2KTdztjC0oAAHiy/0cQs7OH4AHKGwdq1tZ3mYATTqtPrGchgB3dDU+i9EBdyZfBcAFAwAeRjvmjocZ94q8zW1KT0utAyVLIgC6Hh5ywxcbknm/c3xosV1grcw44bM2ptydDzWSFLZ+QMV0Af84jzP7dtc4VCkvQD+e+ccJpxdyWI4R5lJCsroAXYkao8EAYZ2BO6pwkizHLSVNEyODI4c1em4nJqzr7SUOoLEEL5KbOTzZqTVeRmYTMI02fLrjmVQVr7kPLqnLXhrDXXzsKyPzUZ2dTzHKFSSLNIFIeVEhCF9+wRy2Vlw/Xl1SECx5IAACQl543UNXzDmmWdi08qkn5YH/d0M1AsUYKH1CgPbNGz+oX09JvgRKFoG0aIRIGfBNhflSar/efW7cbAdb9u0XAN7kjChLdMdYkiExUYBxpHiLlAUIGEhJPyk2FaQKkQSHHFXKStFUMdzUddCLy5floookmmmi6Jf8CrUKyoebWUmMAAAAASUVORK5CYII=">
-    </div>
+    
     <div class="side">
+       
         <h2 style="border-bottom: 4px solid #e6ecf0;">Dwitter</h2>
         <h4><i class="material-icons">home</i>Home</h4>
        
-        <h4 onclick="window.location.reload(); "><i class="material-icons">account_box</i>Profile</h4>
+        <h4><i class="material-icons">account_box</i><a onclick ="App.profile()" > Profile </a></h4>
         <h4>#Hashtags</h4>
         
     </div>
@@ -39,11 +38,12 @@
 
 
     <div class="timeline">
+         
         <div>
-            <h2 style="padding-left: 10px; border-bottom: 4px solid #e6ecf0;">Home
+            <h2 style="padding-left: 10px; border-bottom: 4px solid #20465f;">Home
                 <span>
-                    <form class="search" style="float: right;">
-                        <input type="text" placeholder="Search Dwitter" name="search" id="search"> <button type="submit" onclick="App.searchUser(); return false;" style="border-radius: 10px;"><i class="fa fa-search" style="color: white;"></i></button>
+                    <form class="search" style="float: right;"> 
+                        <input type="text" placeholder="Search Dwitter" name="search" id="search"> <button type="submit" onclick="App.searchUser(); return false;" style="border-radius: 10px;"><i class="fa fa-search" style="color:whitesmoke;"></i></button>
                     </form>
                 </span>
             </h2>
@@ -51,47 +51,51 @@
         <div class=tweetbox>
             <form style="padding: 10px 10px 10px 10px;" onSubmit="App.addNewDweet(); return false;">
                 <div class=tweetinput>
-                    <input id = "dweet" placeholder="What's happening??" type="text" style="min-width: 650px; padding: 10px 10px 10px 10px; border: none; font-size: 20px;">
+                    <input  class = "hello" id = "dweet" placeholder="What's happening??" type="text" style="min-width: 650px; padding: 10px 10px 10px 10px; border: none; font-size: 20px;">
                 </div>
                 <div class="dweettag">
-                    <input id="hashtag" placeholder="Enter your #hashtag" type="text" class="hashtags" style="min-width: 300px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-size: 15px; border: none" />
+                    <input class="hi" id="hashtag" placeholder="Enter your #hashtag" type="text" class="hashtags" style="min-width: 300px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-size: 15px; border: none" />
                 </div>
-              <input type="submit" class="twtbtn" style="margin-left:450px" value="Post Dweet >">  
+              <input type="submit" class="twtbtn" style="margin-left:410px" value="Post Dweet">  
                      </form>
         </div>
       
         <ul id="post">
-        <div class="dweetpost"  style="padding: 15px; border-bottom: 6px solid #e6ecf0; display:none;">
+        <div class="dweetpost"  style="padding: 0px; border-bottom: 6px solid #e6ecf0; display:none;">
+            <div class="xyz">
             <div class="ownerAvatar">
-                <img src="avatar1.jpg" style="vertical-align: middle; width: 50px; height: 50px; border-radius: 50%;" />
+                <img src="avatar1.jpg"
+                 style="display: inline; width: 80px; height: 80px;" />
             </div>
             
             <div class="dweetbody" >
                 <div>
-                    <div class="userName" style="font-weight: bold;">
+                    <div class="userName" style="font-weight: bold; font-size: 20px;">
+
                         <p> <span class="ownerAddress" style="font-size: 14px; "></span> &nbsp;&nbsp; </p>
                     </div> <div class="time" style="font-size: 10px;font-weight: bold;"> <h3> </h3></div>
                     <div class="dweetcontent" id="dweetcontent">
-                       <p></p>
+                       <p>Finally, Landed to Chicago</p>
                     </div>
                     <div class="hashtags">
                         <h5>
-                           
+                           #travel #2021 #Wanderlust
                         </h5>
                     </div>
                 </div>
 
                 <div class="dweetfooter">
-                    <button class= "upvoteButton" style="visibility: hidden;">
+                    <button class= "upvoteButton" style="visibility: hidden;" >
                         <span> <i class="material-icons">favorite_border</i></span> <span class= "upvotes"></span> </button>  
-                    <button class= "downvoteButton" style="visibility: hidden;"> 
+                    <button class= "downvoteButton" style="visibility: hidden;" > 
                         <span> <i class="material-icons">favorite</i></span><span class= "upvotesChange"></span>  </button> 
                     <button class= "reportButton" style="visibility: hidden;"> REPORT
                         <span> <i class="material-icons">report</i> </span><span class= "reports"></span></button>
                     
                 </div>
-            </div>
+            </div></div> 
         </div></ul> 
+        
 
         
     </div>
@@ -105,7 +109,7 @@
             <h6 class="ownerAddress"><span id="account"> </span> </h6>
             <h6><span id="bio"> </span> </h6>
         </div>
-        <ul id="post1"> 
+        
             <div class="dweetbody1" style="display: none;">
                 
                     <div class="userName1">
@@ -126,7 +130,7 @@
                     
                 </div>
             </div>
-        </ul>
+
     </div>
 
    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -137,7 +141,7 @@
      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
      crossorigin="anonymous"
    ></script>
-   <script src="app.js"></script>
+   <script src="app1.js"></script>
 
 </body>
 </html>
